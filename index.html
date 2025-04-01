@@ -1,34 +1,41 @@
 <!DOCTYPE html>
-<html lang="pt-BR">
+<html lang="pt-BR" data-theme="dark"> <!-- Adicionei data-theme para persistência -->
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Trabalhe Conosco - NewDev</title>
     <meta name="description" content="Candidatura para Desenvolvedor Web JR">
-
+    
+    <link rel="icon" href="favicon.ico" type="image/x-icon">
+    
+    <link rel="preconnect" href="https://cdnjs.cloudflare.com">
+    
     <link rel="stylesheet" href="style.css">
     <meta name="theme-color" content="#0d0729">
-    <script src="script.js"></script>
+ 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 
 <body>
-    <header class="cabecalho">
-        <header class="cabecalho-titulo-principal">VAGA DESENVOLVIMENTO WEB JR</header>
+
+    <header class="cabecalho" role="banner">
+        <h1 class="cabecalho-titulo-principal" aria-label="Vaga para Desenvolvedor Web Junior">
+            <span class="typing-effect">VAGA DESENVOLVIMENTO WEB JR</span> 
+        </h1>
         <p class="cabecalho-titulo-secundario">Quer se tornar um Desenvolvedor Web na Newdev?</p>
-        <nav class="cabecalho-menu">
-            <a href="#sobre" class="menu-link">Home</a>
+        
+        <nav class="cabecalho-menu" aria-label="Navegação principal">
+            <a href="#sobre" class="menu-link">Home</a> 
             <a href="#projetos" class="menu-link">Segmentos</a>
             <a href="#contato" class="menu-link">Contato</a>
-            <a href="#vagas" class="menu-link">Trabalhe Conosco</a>
+            <a href="#vagas" class="menu-link active">Trabalhe Conosco</a>
             <a href="#empresa" class="menu-link">Quem somos</a>
         </nav>
     </header>
 
-    <main>
-        <section id="sobre" class="sobre">
-            <h2 class="secao-titulo">Descrição da Vaga:</h2>
-
+    <main role="main">
+        <section id="sobre" class="sobre" aria-labelledby="sobre-titulo">
+            <h2 id="sobre-titulo" class="secao-titulo">Descrição da Vaga:</h2>
             <div class="sobre-texto">
                 <p>Estamos buscando um(a) Desenvolvedor(a) Web Junior apaixonado(a) por tecnologia e disposto(a) 
                 a aprender e crescer em um ambiente dinâmico. Você trabalhará em projetos desafiadores, colaborando 
@@ -56,35 +63,43 @@
                     <li>Experiência com ferramentas de build (Webpack, Vite, Babel).</li>
                     <li>Projetos pessoais ou contribuições em repositórios no GitHub.</li>
                 </ul>
-            
-        <section id="candidatura" class="candidatura">
-                <h2>Como se candidatar?</h2>
-                <p>Envie seu currículo e portfólio para newdev@gmail.com com o assunto:
-                "Candidatura - Desenvolvedor Web Junior - [Seu Nome]".</p>
-                <p>Boa sorte!</p>
-            </section>
+
+            <div class="sobre-texto">
+                <section id="candidatura" class="candidatura">
+                    <h2>Como se candidatar?</h2>
+                    <p>Envie seu currículo e portfólio para <a href="mailto:newdev@gmail.com" class="email-link">newdev@gmail.com</a> com o assunto:</p>
+                    <p class="destaque">"Candidatura - Desenvolvedor Web Junior - [Seu Nome]"</p>
+                    <button class="btn-candidatura" aria-label="Enviar candidatura">
+                        Enviar Currículo
+                    </button>
+                    <p class="boa-sorte">Boa sorte! <span class="emoji">✨</span></p>
+                </section>
             </div>
         </section>
     </main>
 
-    <footer class="rodape">
+    <footer class="rodape" role="contentinfo">
         <div class="redes-sociais">
-            <a href="#" class="social-icon">
+            <a href="#" class="social-icon" data-tooltip="Fale conosco via WhatsApp">
                 <i class="fab fa-whatsapp"></i>
             </a>
-            <a href="#" class="social-icon">
+            <a href="#" class="social-icon" data-tooltip="Nosso LinkedIn">
                 <i class="fab fa-linkedin-in"></i>
             </a>
-            <a href="#" class="social-icon">
+            <a href="#" class="social-icon" data-tooltip="Siga-nos no Instagram">
                 <i class="fab fa-instagram"></i>
             </a>
         </div>
-        <p class="copyright">© 2025 NewDev - Todos os direitos reservados</p>
+        <p class="copyright">© <span id="current-year">2025</span> NewDev - Todos os direitos reservados</p>
     </footer>
 
-    <button id="themeToggle" aria-label="Alternar tema" class="theme-toggle">
-        🌓
+    <button id="themeToggle" aria-label="Alternar tema claro/escuro" class="theme-toggle">
+        <span id="themeIcon">🌓</span>
     </button>
 
+    <script src="script.js" defer></script>
+    <script>
+        document.getElementById('current-year').textContent = new Date().getFullYear();
+    </script>
 </body>
 </html>

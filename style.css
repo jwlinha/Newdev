@@ -12,10 +12,16 @@
     --card-bg: #1a0f3d;
 }
 
-* {
+*, *::before, *::after {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    will-change: transform, opacity; 
+}
+
+html {
+    scroll-behavior: smooth;
+    font-size: 16px;
 }
 
 body {
@@ -23,38 +29,42 @@ body {
     line-height: 1.6;
     color: var(--text);
     background-color: var(--background);
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
     transition: var(--transition);
-    padding-bottom: 0;
-    min-height: 100vh; 
-    display: flex; 
-    flex-direction: column; 
 }
 
 .cabecalho {
     background: linear-gradient(135deg, var(--secondary), var(--black));
+    background-size: 400% 400%;
     color: var(--white);
     text-align: center;
     padding: 3rem 1rem;
     margin-bottom: 3rem;
     border-bottom: 4px solid var(--accent);
-}
-
-.cabecalho-titulo {
-    font-size: 2.2rem;
-    margin-bottom: 1rem;
-    letter-spacing: 1px;
-    text-transform: uppercase;
+    animation: gradientBG 15s ease infinite;
 }
 
 .cabecalho-titulo-principal {
     font-size: 2rem;
     color: var(--accent);
     font-weight: 700;
+    overflow: hidden;
+    white-space: nowrap;
+    border-right: .15em solid var(--accent);
+    animation: 
+        typing 3.5s steps(40, end),
+        blink-caret .75s step-end infinite,
+        fadeIn 1s ease-out;
+    display: inline-block;
+    margin: 0 auto 1rem;
 }
 
 .cabecalho-titulo-secundario {
     font-size: 1.3rem;
     opacity: 0.9;
+    animation: fadeIn 1.5s ease-out;
 }
 
 .cabecalho-menu {
@@ -74,10 +84,10 @@ body {
     transition: var(--transition);
     background: rgba(255, 255, 255, 0.1);
     border: 2px solid transparent;
-    font-size: 0.95rem;
 }
 
-.menu-link:hover {
+.menu-link:hover, 
+.menu-link.active {
     background: var(--accent);
     color: var(--black);
     transform: translateY(-3px);
@@ -85,14 +95,16 @@ body {
 }
 
 main {
+    flex: 1;
     max-width: 900px;
+    width: 100%;
     margin: 0 auto;
     padding: 0 1.5rem;
-    flex: 1;
 }
 
 .secao {
     margin-bottom: 4rem;
+    scroll-margin-top: 2rem;
 }
 
 .secao-titulo {
@@ -122,6 +134,7 @@ main {
     box-shadow: var(--shadow);
     margin-bottom: 2rem;
     border-left: 4px solid var(--accent);
+    animation: float 8s ease-in-out infinite;
 }
 
 .sobre-texto p {
@@ -176,27 +189,71 @@ main {
     font-size: 1.5rem;
 }
 
-.candidatura p {
-    margin-bottom: 1rem;
+.btn-candidatura {
+    background: var(--accent);
+    color: var(--black);
+    border: none;
+    padding: 0.8rem 2rem;
+    border-radius: 30px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: var(--transition);
+    margin: 1rem auto 0;
+    display: inline-block;
+    position: relative;
+    overflow: hidden;
 }
 
-.candidatura p:last-child {
-    color: var(--primary);
-    font-weight: bold;
-    font-size: 1.1rem;
+.btn-candidatura::after {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: linear-gradient(
+        to bottom right, 
+        rgba(255,255,255,0.3) 0%, 
+        rgba(255,255,255,0) 60%
+    );
+    transform: rotate(30deg);
+    transition: var(--transition);
+}
+
+.btn-candidatura:hover {
+    transform: translateY(-3px);
+    box-shadow: var(--shadow);
+}
+
+.btn-candidatura:hover::after {
+    left: 100%;
+    top: 100%;
+}
+
+.email-link {
+    color: var(--accent);
+    text-decoration: none;
+    font-weight: 600;
+    padding: 0.2rem 0.4rem;
+    border-radius: 4px;
+    transition: var(--transition);
+}
+
+.email-link:hover {
+    color: var(--white);
+    background-color: var(--accent);
+    box-shadow: var(--shadow);
 }
 
 .rodape {
     background: linear-gradient(135deg, var(--secondary), var(--black));
     color: var(--white);
     text-align: center;
-    padding: 3rem 1rem;
+    padding: 2rem 1rem;
     margin-top: auto;
     border-top: 4px solid var(--accent);
-    padding-bottom: 1rem; 
-    position: relative; 
-    bottom: 0; 
-    width: 100%;
+    position: relative;
+    z-index: 10;
 }
 
 .redes-sociais {
@@ -217,23 +274,14 @@ main {
     display: flex;
     align-items: center;
     justify-content: center;
+    text-decoration: none;
+    position: relative;
 }
 
 .social-icon:hover {
     background: var(--accent);
     color: var(--black);
     transform: translateY(-5px);
-}
-
-.copyright {
-    opacity: 0.8;
-    font-size: 0.9rem;
-    margin-top: 1rem;
-}
-
-.social-icon {
-    position: relative;
-    text-decoration: none;
 }
 
 .social-icon::after {
@@ -257,29 +305,9 @@ main {
     bottom: -40px;
 }
 
-@media (max-width: 768px) {
-    .cabecalho-titulo:first-child {
-        font-size: 1.8rem;
-    }
-    
-    .cabecalho-menu {
-        gap: 0.8rem;
-    }
-    
-    .menu-link {
-        padding: 0.5rem 1rem;
-        font-size: 0.85rem;
-    }
-    
-    .sobre-texto,
-    .candidatura {
-        padding: 1.5rem;
-    }
-}
-
-:focus {
-    outline: 2px solid var(--accent);
-    outline-offset: 3px;
+.copyright {
+    opacity: 0.8;
+    font-size: 0.9rem;
 }
 
 .theme-toggle {
@@ -300,13 +328,90 @@ main {
     box-shadow: var(--shadow);
     transition: var(--transition);
     z-index: 100;
+    transform: none !important;
 }
 
 .theme-toggle:hover {
     transform: scale(1.1) rotate(30deg);
 }
 
-/* Variáveis para o tema claro */
+@keyframes gradientBG {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+@keyframes typing {
+    from { width: 0 }
+    to { width: 100% }
+}
+
+@keyframes blink-caret {
+    from, to { border-color: transparent }
+    50% { border-color: var(--accent); }
+}
+
+@keyframes fadeIn {
+    from { opacity: 0 }
+    to { opacity: 1 }
+}
+
+@keyframes float {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-8px); }
+}
+
+@keyframes fall {
+    to {
+        transform: translateY(100vh) rotate(360deg);
+        opacity: 0;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    * {
+        animation: none !important;
+        transition: none !important;
+        scroll-behavior: auto !important;
+    }
+}
+
+:focus {
+    outline: 2px solid var(--accent);
+    outline-offset: 3px;
+}
+
+@media (max-width: 768px) {
+    .cabecalho-titulo-principal {
+        font-size: 1.8rem;
+        animation: none;
+        border-right: none;
+        white-space: normal;
+    }
+    
+    .cabecalho-menu {
+        gap: 0.8rem;
+    }
+    
+    .menu-link {
+        padding: 0.5rem 1rem;
+        font-size: 0.85rem;
+    }
+    
+    .sobre-texto,
+    .candidatura {
+        padding: 1.5rem;
+    }
+    
+    .theme-toggle {
+        width: 2.5rem;
+        height: 2.5rem;
+        font-size: 1.2rem;
+        bottom: 1rem;
+        right: 1rem;
+    }
+}
+
 [data-theme="light"] {
     --primary: #5d8aec;
     --secondary: #a3c9f5;
@@ -317,7 +422,6 @@ main {
     --card-bg: #abc8f5;
 }
 
-/* Variáveis para o tema escuro */
 [data-theme="dark"] {
     --primary: #6b79b9;
     --secondary: #352955;
