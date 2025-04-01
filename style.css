@@ -1,0 +1,329 @@
+:root {
+    --primary: #6b79b9;
+    --secondary: #352955;
+    --accent: #8a9bff;
+    --background: #0d0729;
+    --text: #f0f0f0;
+    --text-light: #b0b0b0;
+    --white: #ffffff;
+    --black: #0d0729;
+    --shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+    --transition: all 0.3s ease;
+    --card-bg: #1a0f3d;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Courier New', Courier, monospace;
+    line-height: 1.6;
+    color: var(--text);
+    background-color: var(--background);
+    transition: var(--transition);
+    padding-bottom: 0;
+    min-height: 100vh; 
+    display: flex; 
+    flex-direction: column; 
+}
+
+.cabecalho {
+    background: linear-gradient(135deg, var(--secondary), var(--black));
+    color: var(--white);
+    text-align: center;
+    padding: 3rem 1rem;
+    margin-bottom: 3rem;
+    border-bottom: 4px solid var(--accent);
+}
+
+.cabecalho-titulo {
+    font-size: 2.2rem;
+    margin-bottom: 1rem;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+}
+
+.cabecalho-titulo-principal {
+    font-size: 2rem;
+    color: var(--accent);
+    font-weight: 700;
+}
+
+.cabecalho-titulo-secundario {
+    font-size: 1.3rem;
+    opacity: 0.9;
+}
+
+.cabecalho-menu {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 1.5rem;
+    margin-top: 2rem;
+}
+
+.menu-link {
+    color: var(--white);
+    text-decoration: none;
+    font-weight: 600;
+    padding: 0.7rem 1.5rem;
+    border-radius: 30px;
+    transition: var(--transition);
+    background: rgba(255, 255, 255, 0.1);
+    border: 2px solid transparent;
+    font-size: 0.95rem;
+}
+
+.menu-link:hover {
+    background: var(--accent);
+    color: var(--black);
+    transform: translateY(-3px);
+    box-shadow: var(--shadow);
+}
+
+main {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 0 1.5rem;
+    flex: 1;
+}
+
+.secao {
+    margin-bottom: 4rem;
+}
+
+.secao-titulo {
+    font-size: 1.8rem;
+    color: var(--accent);
+    margin-bottom: 2rem;
+    position: relative;
+    padding-bottom: 0.5rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.secao-titulo::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100px;
+    height: 3px;
+    background: var(--primary);
+}
+
+.sobre-texto {
+    background: var(--card-bg);
+    padding: 2rem;
+    border-radius: 8px;
+    box-shadow: var(--shadow);
+    margin-bottom: 2rem;
+    border-left: 4px solid var(--accent);
+}
+
+.sobre-texto p {
+    margin-bottom: 1.5rem;
+    line-height: 1.8;
+}
+
+.sobre-lista,
+.sobre-lista-req,
+.sobre-lista-dif {
+    list-style: none;
+    margin: 1.5rem 0;
+}
+
+.sobre-lista li,
+.sobre-lista-req li,
+.sobre-lista-dif li {
+    margin-bottom: 0.8rem;
+    padding-left: 1.8rem;
+    position: relative;
+    line-height: 1.7;
+}
+
+.sobre-lista li::before,
+.sobre-lista-req li::before {
+    content: '▹';
+    position: absolute;
+    left: 0;
+    color: var(--primary);
+    font-weight: bold;
+}
+
+.sobre-lista-dif li::before {
+    content: '★';
+    position: absolute;
+    left: 0;
+    color: var(--accent);
+}
+
+.candidatura {
+    background: var(--card-bg);
+    padding: 2rem;
+    border-radius: 8px;
+    margin-top: 3rem;
+    text-align: center;
+    border: 1px dashed var(--accent);
+}
+
+.candidatura h2 {
+    color: var(--accent);
+    margin-bottom: 1rem;
+    font-size: 1.5rem;
+}
+
+.candidatura p {
+    margin-bottom: 1rem;
+}
+
+.candidatura p:last-child {
+    color: var(--primary);
+    font-weight: bold;
+    font-size: 1.1rem;
+}
+
+.rodape {
+    background: linear-gradient(135deg, var(--secondary), var(--black));
+    color: var(--white);
+    text-align: center;
+    padding: 3rem 1rem;
+    margin-top: auto;
+    border-top: 4px solid var(--accent);
+    padding-bottom: 1rem; 
+    position: relative; 
+    bottom: 0; 
+    width: 100%;
+}
+
+.redes-sociais {
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+    margin-bottom: 1.5rem;
+}
+
+.social-icon {
+    color: var(--white);
+    font-size: 1.8rem;
+    transition: var(--transition);
+    background: rgba(255, 255, 255, 0.1);
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.social-icon:hover {
+    background: var(--accent);
+    color: var(--black);
+    transform: translateY(-5px);
+}
+
+.copyright {
+    opacity: 0.8;
+    font-size: 0.9rem;
+    margin-top: 1rem;
+}
+
+.social-icon {
+    position: relative;
+    text-decoration: none;
+}
+
+.social-icon::after {
+    content: attr(aria-label);
+    position: absolute;
+    bottom: -30px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: var(--accent);
+    color: var(--black);
+    padding: 0.3rem 0.8rem;
+    border-radius: 4px;
+    font-size: 0.8rem;
+    opacity: 0;
+    transition: var(--transition);
+    white-space: nowrap;
+}
+
+.social-icon:hover::after {
+    opacity: 1;
+    bottom: -40px;
+}
+
+@media (max-width: 768px) {
+    .cabecalho-titulo:first-child {
+        font-size: 1.8rem;
+    }
+    
+    .cabecalho-menu {
+        gap: 0.8rem;
+    }
+    
+    .menu-link {
+        padding: 0.5rem 1rem;
+        font-size: 0.85rem;
+    }
+    
+    .sobre-texto,
+    .candidatura {
+        padding: 1.5rem;
+    }
+}
+
+:focus {
+    outline: 2px solid var(--accent);
+    outline-offset: 3px;
+}
+
+.theme-toggle {
+    position: fixed;
+    bottom: 2rem;
+    right: 2rem;
+    width: 3rem;
+    height: 3rem;
+    border-radius: 50%;
+    background: var(--accent);
+    color: var(--black);
+    border: none;
+    font-size: 1.5rem;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: var(--shadow);
+    transition: var(--transition);
+    z-index: 100;
+}
+
+.theme-toggle:hover {
+    transform: scale(1.1) rotate(30deg);
+}
+
+/* Variáveis para o tema claro */
+[data-theme="light"] {
+    --primary: #5d8aec;
+    --secondary: #a3c9f5;
+    --accent: #2c1585;
+    --background: #ffffff;
+    --text: #1d1c1c;
+    --text-light: #302d2d;
+    --card-bg: #abc8f5;
+}
+
+/* Variáveis para o tema escuro */
+[data-theme="dark"] {
+    --primary: #6b79b9;
+    --secondary: #352955;
+    --accent: #8a9bff;
+    --background: #0d0729;
+    --text: #f0f0f0;
+    --text-light: #b0b0b0;
+    --card-bg: #1a0f3d;
+}
